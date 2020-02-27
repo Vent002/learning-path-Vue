@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    // angular框架
+    // react 框架
+    //1. 对象字面量
+    //  const obj = new Object();
+    //一般写法
+     const obj = {   //{}称为对象字面量
+         name: 'hsm',
+         age : 18,
+         sex : '女',
+         run : function () {
+
+         }
+     };
+     //2. 对象属性的增强写法
+    const name = 'bobo';
+    const age = 18;
+    const sex = '男';
+    //ES5的写法
+    // const  obj1 = {
+    //     name : name,
+    //     age : age,
+    //     sex : sex
+    // }
+
+    //ES6的写法
+    const obj1 = {
+        name,
+        age,
+        sex,
+    }
+    console.log(obj1);
+
+    //3. 函数的增强写法
+    //ES5的写法
+    // const obj = {
+    //     run:function () {
+    //
+    //     },
+    //     eat:function () {
+    //
+    //     }
+    // }
+
+    //ES6的写法
+    const obj = {
+        run(){
+
+        },
+        eat(){
+
+        }
+    }
+</script>
+</body>
+</html>

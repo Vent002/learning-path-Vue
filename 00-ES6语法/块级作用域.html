@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<button>按钮4</button>
+<button>按钮5</button>
+<script>
+/*
+* 1. 变量作用域： 变量的使用范围；
+*
+*2. 没有块级作用域引起的问题
+*   i:if的块级
+*   ii:for的块级
+*  闭包可以解决var无块级作用域的问题
+*
+* */
+// 2.没有块级作用域引起的问题：if
+//     var func;
+//     if(true)
+//     {
+//         var name='gxm';
+//         func = function(){
+//             console.log(name);
+//         }
+//     }
+//     name = 'Bobe';
+//     func();
+
+    var name = 'gxm';
+    function f(bbb) {
+        console.log(bbb);
+    }
+    f(name);
+    name='hsm';
+
+    //3.没有块级作用域引起的问题：for
+    //为什么闭包可以解决问题：函数是一个作用域
+    //     var btns = document.getElementsByTagName('button');
+    //     for (var i = 0; i <=btns.length ; i++) {
+    //         (function (num) {
+    //             btns[i].addEventListener('click',function(){
+    //                 console.log('第'+ num + '个按钮被点击');
+    //             })
+    //         }) (i)
+    // }
+
+    // ES6  let设置有块级作用域
+    var btns = document.getElementsByTagName('button');
+    for (let i = 0; i <btns.length ; i++) {
+        btns[i].addEventListener('click',function () {
+            console.log('第'+ i + '个按钮被点击');
+        })
+    }
+</script>
+</body>
+</html>
