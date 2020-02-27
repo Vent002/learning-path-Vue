@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>test vue.js</title>
+<script type="text/javascript" src="../../vue/vue.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<ul>
+			<li v-for="item in movies">{{item}}</li>
+		</ul>
+	</div>
+<script type="text/javascript">
+	//声明式编程
+	const app = new Vue({
+		el:'#app', //用于挂载要管理的元素
+		data:{		//定义数据
+			message:'你好',
+			movies:['猫鼠游戏','猜火车','阿甘正传']
+		}
+	})
+</script>
+</body>
+</html>

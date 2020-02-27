@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			[v-cloak]{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app" v-cloak>	
+			<p>{{message}},李银河 </p>
+			<p v-once>v-once {{message}}</p>
+			<input v-model="message"><br /><br /><br />
+			<a v-bind:href="bindUrl">点击</a>
+			
+			<span> v-html</span><h3 v-html="url"></h3>
+			<h3> {{firstName + lastName }}</h3>
+			<h3> {{firstName +' '+lastName }}</h3>
+			<h3> {{firstName}} {{lastName}}</h3>
+			<h3> {{counter *2}}</h3>
+		</div>
+		
+		<script src="../../vue/vue.js"></script>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: '你好啊',
+					firstName: '波比',
+					lastName: '派克',
+					counter:100,
+					url:'<a href="http://www.baidu.com">百度一下</a>',
+					bindUrl:'http://www.baidu.com'
+				}
+			})
+		</script>
+	</body>
+</html>
