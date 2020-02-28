@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--    <h2 :style="{fontSize:'28px'}">{{message}}</h2>-->
+<!--    :style="{key(属性名)；value(属性值)}"-->
+<!--    '28px'必须加上单引号，否则是当成一个变量去解析-->
+
+<!--    <h2 :style="{fontSize:fontSize}">{{message}}</h2>  无效果-->
+<!--    <h2 :style="{fontSize:fontSize + 'px'}">{{message}}</h2>  '+'是连接字符的作用  -->
+    <h2 :style="{fontSize:fontSize + 'px',backgroundColor:finalColor}">{{message}}</h2>
+    <h2 :style="getStyle()">{{message}}</h2>
+</div>
+<script src="../../vue/vue.js"></script>
+<script type="text/javascript">
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello,world',
+            fontSize:100,
+            finalColor:'red'
+        },
+        methods:{
+            getStyle:function () {
+                return {fontSize:this.fontSize + 'px',backgroundColor:this.finalColor}
+            }
+        }
+    })
+</script>
+</body>
+</html>

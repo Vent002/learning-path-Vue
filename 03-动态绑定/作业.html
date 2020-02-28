@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    .active{
+        color: red;
+    }
+</style>
+<div id="app">
+    <ul>
+        <li @click="liClick(index)"
+            :class="{active:currentIndex == index}"
+            v-for="(m,index) in movies">
+            {{index}} {{m}}
+        </li>
+    </ul>
+</div>
+<script src="../../vue/vue.js"></script>
+<script type="text/javascript">
+    const app = new Vue({
+        el: '#app',
+        data: {
+            movies:['星际穿越','钢铁侠','猜火车','盗梦空间'],
+            isActive:true,
+            currentIndex:0,
+        },
+        methods:{
+           liClick:function (index) {
+                this.currentIndex = index;
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+<head>
+	<title>test vue.js</title>
+	<script type="text/javascript" src="../../vue/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+	<img v-bind:src="imgUrl" alt="">
+
+	<a v-bind:href="aHref" title="">百度一下</a>
+</div>
+<script type="text/javascript">
+	//声明式编程
+	const app = new Vue({
+		el:'#app',
+		data:{
+			message:'hello ,world',
+			imgUrl:'',
+			aHref:'http://ww.baidu.com'
+		}
+	})
+</script>
+</body>
+</html>
