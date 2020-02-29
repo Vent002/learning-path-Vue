@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--
+    ctrl + d 复制一行
+    ctrl + r 替换
+    ctrl + X 删除行
+    ctrl +　Ｊ　自动代码
+
+    -->
+    <ul>
+        <li v-for="m in books"> {{m}}</li>
+        <h2>总价格：{{totalPrice}}</h2>
+
+    </ul>
+    <h2>{{message}}</h2>
+</div>
+<script src="../../vue/vue.js"></script>
+<script type="text/javascript">
+    const app = new Vue({
+        el: '#app',
+        data: {
+            books:[
+                {id:1001,name:"Unix编程的艺术",price:119},
+                {id:1001,name:"代码大全",price:59},
+                {id:1001,name:"奇风岁月",price:78},
+                {id:1001,name:"厌女",price:78},
+            ]
+        },
+        computed:{
+            totalPrice:function () {
+                let result = 0
+                for (let i = 0;i < this.books.length;i++){
+                    result += this.books[i].price
+                }
+                return result
+            }
+        }
+    })
+</script>
+</body>
+</html>

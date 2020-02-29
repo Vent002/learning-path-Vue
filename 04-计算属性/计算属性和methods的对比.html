@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{firstName}} {{lastName}}</h2><!-- 不使用 -->
+    <h2>{{getFullName()}}</h2><!-- 多次使用该函数会被多次调用 -->
+    <h2>{{fullName}}</h2><!--多次使用 只调用该函数一次 内部缓存 直接返回结果-->
+</div>
+<script src="../../vue/vue.js"></script>
+<script type="text/javascript">
+    const app = new Vue({
+        el: '#app',
+        data: {
+            firstName: 'Nancy',
+            lastName:'Bob'
+        },
+        methods:{
+            getFullName:function () {
+                return this.firstName+ ' ' + this.lastName
+            }
+        },
+        computed:{
+            fullName:function () {
+                return this.firstName + ' ' + this.lastName;
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
