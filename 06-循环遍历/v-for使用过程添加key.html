@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!-- 在b和c中插入一个元素f  splice(index , del count)
+        app.letters.splice(2 , 0 , 'f')  // 在第三个位置插入f
+    -->
+    <ul>
+        <li v-for="item in letters" :key="item">{{item}}</li>
+    </ul>
+</div>
+<script src="../../vue/vue.js"></script>
+<script type="text/javascript">
+    const app = new Vue({
+        el: '#app',
+        data: {
+            letters:['a','b','c','d','e'],
+        },
+        methods:{
+
+        }
+    })
+</script>
+</body>
+</html>
