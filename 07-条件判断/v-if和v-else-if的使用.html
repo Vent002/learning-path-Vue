@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--    <h2 v-if="score>=90">优秀</h2>-->
+<!--    <h2 v-else-if="score>=80">良好</h2>-->
+<!--    <h2 v-else-if="score>=60">合格</h2>-->
+<!--    <h2 v-else>不及格</h2>-->
+    <input v-model="score" type="text" placeholder="请输入分数0-100" />
+    <h2>{{showMessage}}</h2>
+    <button v-bind:="isShow">提交</button>
+</div>
+<script src="../../vue/vue.js"></script>
+<script type="text/javascript">
+    const app = new Vue({
+        el: '#app',
+        data: {
+            score:0,
+            showMessage:''
+        },
+        computed:{
+            set(newValue){
+                newValue = this.score;
+            },
+            isShow(){
+                if(this.score >= 90 && this.score <=100){
+                    this.showMessage = '优秀'
+                }else if(this.score >=80  && this.score <90){
+                    this.showMessage = '良好'
+                }else if(this.scale >= 60 && this.score <80){
+                    this.showMessage = '合格'
+                }else if(this.score >=100 || this.score < 0){
+                    this.showMessage ='输入有误'
+                }
+                else{
+                    this.showMessage = '不合格'
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
