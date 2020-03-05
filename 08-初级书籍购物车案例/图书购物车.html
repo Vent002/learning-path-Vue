@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="../../js/css/bootstrap.css">
+  <script src="../../js/js/jquery-3.4.1.min.js"></script>
+  <script src="../../js/js/bootstrap.js"></script>
+</head>
+<body>
+<div id="app" class="container">
+ <div v-if="books.length">
+   <table class="table-bordered table-striped">
+     <thead>
+     <tr>
+       <th></th>
+       <th>书籍名称</th>
+       <th>出版日期</th>
+       <th>价格</th>
+       <th>购买数量</th>
+       <th>操作</th>
+     </tr>
+     </thead>
+     <tbody>
+     <tr v-for="(item,index) in books">
+       <td>{{item.id}}</td>
+       <td>{{item.name}}</td>
+       <td>{{item.date}}</td>
+       <!--<td>{{'￥'+item.price.toFixed(2)}}</td>-->
+       <!-- <td>{{getFinalPrice(item.price)}}</td>-->
+       <td>{{item.price | showPrice}}</td>
+       <td>
+         <button @click="decrement(index)" v-bind:disable="item.count <= 1">-</button>
+         {{item.count}}
+         <button @click="increment(index)">+</button>
+       </td>
+       <td><button @click="removeHandle(index)">移除</button></td>
+     </tr>
+     </tbody>
+   </table>
+   <h2>总价格：{{totalPrice}}</h2>
+ </div>
+  <h2 v-else>购物车为空</h2>
+</div>
+<script src="../../vue/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data : {
+      books: [
+        {
+          id:1,
+          name:'《算法导论》',
+          date:'2008-8-8',
+          price: 85.00,
+          count: 1
+        },
+        {
+          id:2,
+          name:'《UNIX编程艺术》',
+          date:'2004-6',
+          price: 59.00,
+          count: 1
+        },
+        {
+          id:3,
+          name:'《数据结构》',
+          date:'2010-8',
+          price: 85.00,
+          count: 1
+        },
+        {
+          id:4,
+          name:'《编译原理》',
+          date:'2004-8',
+          price: 92.00,
+          count: 1
+        },
+      ]
+    },
+    methods:{
+     /* getFinalPrice(price){
+        return '￥'+price.toFixed(2);
+      }*/
+     decrement(index) {
+       this.books[index].count--;
+     },
+      increment(index) {
+       this.books[index].count++;
+      },
+      removeHandle(index){
+        this.books.splice(index,1)
+      }
+    },
+    computed:{
+      totalPrice() {
+        //1.普通的for循环
+        /* let totalPrice = 0;
+        for (let i = 0;i < this.books.length;i++){
+          totalPrice += this.books[i].price * this.books[i].count
+        }
+        return totalPrice
+      }*/
+
+        //2. for(let i in/of this.books)
+        // let totalPrice = 0;
+        // for (let i in this.books) {
+        //   const book = this.books[i];
+        //   totalPrice += book.price * book.count;
+        // }
+        // return totalPrice
+
+        //3. for(let i of this.books)
+        // let  totalPrice = 0;
+        // for (let item of this.books){
+        //   totalPrice += item.price * item.count
+        // }
+        // return totalPrice
+
+        //4. reduce
+        return this.books.reduce(function (preValue,book) {
+          return preValue + book.price * book.count
+        },0)
+      }
+    },
+    filters:{
+      showPrice(price){
+        return '￥'+price.toFixed(2);
+      }
+    }
+  })
+
+  //filter/map/reduce
+  //filter中的回调函数有一个要求：必须要返回一个boolean值
+  //true:当返回true时，函数内部会自动将这次回调的n加入到新的数组中
+  //false:　当返回false时，函数内部会过滤掉这次的n
+  const nums = [10,20,30,40,50,60,70,1000,1112]
+
+  let total = nums.filter(n => n < 100).map(n => n * 2).reduce((pre, n) => pre + n)
+  console.log(total)
+  // let total = nums.filter(function (n) {
+  //   return n < 100
+  // }).map(function (n) {
+  // return n*2
+  // }).reduce(function(preValue,n){
+  //   return preValue + n
+  // }, 0)
+  // console.log(total);
+
+  // let newNums = nums.filter(function (n) {
+  //   return n < 100
+  // })
+  // console.log(newNums);
+  // //2. map函数的使用
+  // let new2Nums = newNums.map(function (n) {
+  //   return n*2;
+  // })
+  // console.log(new2Nums)
+  //
+  // //3. reduce函数的使用
+  // //对数组中所有的内容进行汇总
+  // let total = new2Nums.reduce(function (preValue,n) {
+  // return preValue + n
+  // }, 0 )
+  // console.log(total);
+  //第一次： preValue  0 n 20
+  //第二次： preValue 20 n 40
+  //第三次： preValue 60 n 60
+  //第四次： preValue 120 n 80
+  //第五次： preValue 200 n 100
+  //第二次： preValue 300 n 120
+  //第二次： preValue 420 n 140
+  //第二次： preValue 560 n
+ //total 560
+
+  // //1. 取出所有小于100的数字
+  // let newNums = []
+  // for (let n of nums) {
+  //   if (n<100){
+  //     newNums.push(n);
+  //   }
+  // }
+  // console.log(newNums)
+  // //2. 将所有小于100的数字晶型转化：全部*2
+  // let new2Nums = []
+  // for(let n of newNums){
+  //   new2Nums.push(n*2)
+  // }
+  // console.log(new2Nums);
+  // //3. 将所有new2Nums数字相加，得到最终的结果
+  // let total = 0
+  // for(let n of new2Nums){
+  //   total += n
+  // }
+  // console.log(total);
+</script>
+</body>
+</html>
