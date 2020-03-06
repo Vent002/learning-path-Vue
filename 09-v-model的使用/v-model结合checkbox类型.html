@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <label for="agreement"></label>
+  <input type="checkbox" id="agreement" v-model="isAgree"> 同意协议
+  <h2>您选择的是：{{isAgree}}</h2>
+  <button :disabled="!isAgree">下一步</button>
+  
+  <!-- checkbox 多选框-->
+  <label for=""></label>
+  <input type="checkbox" value="keep" v-model="hobbits"> keep
+  <input type="checkbox" value="game" v-model="hobbits"> 游戏
+  <input type="checkbox" value="stay" v-model="hobbits"> 发呆
+  <input type="checkbox" value="net" v-model="hobbits"> 网络
+  <h2>您的爱好是：{{hobbits}}</h2>
+</div>
+<script src="../../vue/vue.js"></script>
+<script type="text/javascript">
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'hello,world',
+      isAgree: false,//单选框
+      hobbits:[]     //多选框
+    }
+  })
+</script>
+</body>
+</html>
